@@ -59,8 +59,10 @@ def mc_prediction(policy, env, num_episodes, discount_factor=1.0):
         # We convert each state to a tuple so that we can use it as a dict key
         states_in_episode = set([tuple(x[0]) for x in episode])
         for state in states_in_episode:
+            print(state)
             # Find the first occurance of the state in the episode
             first_occurance_idx = next(i for i, x in enumerate(episode) if x[0] == state)
+            print(episode[first_occurance_idx][0])
             # Sum up all rewards since the first occurance
             G = sum([x[2] * (discount_factor ** i) for i, x in enumerate(episode[first_occurance_idx:])])
             # Calculate average return for this state over all sampled episodes
